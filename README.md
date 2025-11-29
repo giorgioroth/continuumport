@@ -147,9 +147,24 @@ ContinuumPort-Core (semantic format & open extractor): MIT License
 
 ContinuumPort-Regen (context reconstruction engine): Proprietary, not included
 
-7. Notes
+7. Notes & Strategic Alignment
 
-This repository demonstrates a conceptual public release of ContinuumPort.
-It is not production-ready and serves to validate the concept of portable semantic continuity across AI systems.
+ContinuumPort is the missing semantic continuity layer for the post-smartphone era.
 
-This repository provides a technical preview of the ContinuumPort standard. It demonstrates the core principles of portable semantic continuity across AI systems but is not yet intended for production use.
+As Elon Musk stated in November 2025:
+> “We’re not going to have a phone in the traditional sense. What we’ll call a phone will really be an edge node for AI inference with some radios to connect.”
+
+In this exact future, ultra-thin edge devices will have:
+- zero persistent local storage
+- zero traditional OS/apps
+- zero ability to keep long-term context on-device
+
+ContinuumPort solves the only remaining hard problem:  
+how to seamlessly carry your personal semantic thread (tasks, intent, tone, progress, memory) between any edge node, any model (Grok, Claude, Llama, Mistral, Qwen, Gemini, local Ollama, etc.), any environment (cloud, offline, car, robot, glasses, implant).
+
+No other open or closed solution currently exists at this fidelity and portability level.
+
+This public repository contains only the open standard and minimal reference implementations.  
+The high-fidelity reconstruction engine (ContinuumPort-Regen) remains proprietary and is available only under commercial license.
+
+Interested in partnership, integration, or enterprise/on-premise Regen deployment?
