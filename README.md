@@ -1,170 +1,84 @@
-ContinuumPort
+ContinuumPort — CP-Core v1.0 (Public Release)
 
-Hybrid Semantic Continuity Layer for Multi-Agent AI
-Version 0.1.0 (Public Concept Release)
+Version: CP-Core v1.0
+Status: Final (Public Release)
 
-ContinuumPort is a hybrid open specification designed to enable cross-session, cross-agent, and cross-model semantic continuity. It standardizes the way AI systems preserve user intent, semantic state, and task progress across otherwise isolated environments, accounts, devices, or models.
+ContinuumPort is an open semantic portability layer designed to preserve and transfer non-sensitive conversational context across AI sessions, models, platforms, and devices.
 
-Unlike traditional context windows or memory embeddings, ContinuumPort defines a portable semantic container that can be passed between models, devices, agents, or applications, reconstructing continuity even when no shared history exists.
+This repository contains the open-source, forever-free components of ContinuumPort under an MIT License.
+The proprietary ContinuumPort-Regen Engine is not included here.
 
-This repository provides:
+Why CP-Core Matters
 
-High-level architecture
+Modern AI systems lack persistent, portable context. A context created in one model, session, device, or platform cannot be safely transferred to another.
 
-ContinuumPort-Core open standard specification
+CP-Core introduces a minimal, model-agnostic semantic container engineered for:
 
-Tiny encoder/decoder implementations (JavaScript, Python, Rust)
+cross-model interoperability
 
-Conceptual notes on proprietary ContinuumPort-Regen (not included)
+cross-session continuity
 
-Roadmap & licensing information
+vendor-neutral AI context transfer
 
-No proprietary code is included.
+safe portability without personal or sensitive data
 
-1. Problem Statement
+bridging local and cloud AI ecosystems
 
-Large Language Models (LLMs) are stateless by design. Every session reset, device change, or model switch loses all semantic progress.
+This compact public core forms the foundation of a broader continuity standard.
 
-ContinuumPort addresses these problems by introducing a semantic continuity transport layer:
+Open-Source Components (MIT License — forever free)
 
-Loss of semantic continuity across sessions
+This repository provides the complete CP-Core v1.0 specification and minimal reference implementations:
 
-Lack of portability between different LLMs
+JavaScript → impl/js/encode-decode.js
 
-Inability to hand off tasks between independent AI agents
+Python → impl/python/encode_decode.py
 
-Fragmented context across local and cloud AI environments
+Rust → impl/rust/src/lib.rs
 
-2. Concept Overview
+These implementations contain only Base64 serialization logic — no regeneration, no inference, no prompt reconstruction.
 
-ContinuumPort consists of three components:
+Proprietary Component (closed-source)
+ContinuumPort-Regen Engine
 
-2.1 Semantic Extractor (Open Standard)
+The private component capable of reconstructing a rich, faithful prompt from a CP-Core token, achieving 97%+ semantic fidelity across models such as Grok, Claude, Llama-3.1, Gemini, Mistral, Qwen, and others.
 
-A ruleset that converts conversation state into a portable semantic container, capturing:
+Available via licensed API or on-premise installation
 
-User intent
+Commercial inquiries: continuumport@gmail.com
 
-Task progress
+The Regen Engine is not included in this repository.
 
-Entities
-
-Key constraints
-
-Persona / tone hints
-
-Semantic state of the conversation
-
-2.2 ContinuumPort-Core Token (Open Format)
-
-A compressed, model-agnostic semantic container containing the minimal semantic state needed for context reconstruction.
-
-Example conceptual structure:
-
-{
-  "version": 1,
-  "language": "en",
-  "summary": "Main user intent",
-  "entities": ["agent", "token", "continuity"],
-  "progress": "Semantic state of the conversation",
-  "memoryHints": { "persona": "", "tone": "", "stage": 2 },
-  "timestamp": 1732560000
-}
-
-
-No personal data is included.
-Portable, safe, and model-agnostic.
-
-2.3 ContinuumPort-Regen (Proprietary Layer)
-
-The Regen engine converts CP-Core tokens into fully contextualized prompts for any LLM, reconstructing continuity with high fidelity (94–97%).
-
-Closed-source and not included in this repository.
-Commercial access via licensed API or on-premise deployment: continuumport@gmail.com
-
-3. Open-Source Components (MIT – forever free)
-
-Complete ContinuumPort-Core v1.0 specification
-
-Tiny, specification-compliant encoder/decoder implementations (10–15 lines each) in:
-
-JavaScript → /impl/js/encode-decode.js
-
-Python → /impl/python/encode_decode.py
-
-Rust → /impl/rust/src/lib.rs
-
-These files contain only Base64 serialization logic — zero intelligence, zero regeneration.
-
-4. Quick Start (Public Part Only)
-// Example in JavaScript
+Quick Start (public components only)
 import { encodeCP } from "./impl/js/encode-decode.js";
 
 const token = encodeCP({
   v: 1,
   lang: "en",
-  summary: "Enable semantic continuity across local and cloud AI models",
+  summary: "We want continuity between local and cloud AI models.",
   entities: ["Ollama", "Grok", "Claude"],
-  progress: "Discussed token format and IP protection",
+  progress: "Discussion about token format and IP protection.",
   memoryHints: { taskStage: 5 }
 });
 
 console.log(token);
-// → CP1:eyJ2IjoxLCJsYW5nIjoiZW4iLCJzdW1tYXJ5IjoiVnJlbSBjb250aW51a…
+// → CP1:eyJ2IjoxLCJsYW5nIjoiZW4iLCJzdW1tYXJ5IjoiV2Ugd2FudCBj...
 
+Folder Structure
+impl/
+  js/encode-decode.js
+  python/encode_decode.py
+  rust/src/lib.rs
 
-The Regen engine is proprietary and not included.
+examples/
+  quickstart_js.md
 
-5. Roadmap
+Each file is a minimal, readable reference to the CP-Core format.
 
-v0.2.0
+Status
 
-Documentation expansion
+CP-Core v1.0: finalized
+Regen Engine: private, in active development
+Licensing: open for enterprise early access
 
-Formal CP-Core schema
-
-Conceptual integrations
-
-v0.3.0
-
-Public Regen API (commercial)
-
-Multi-agent export tooling
-
-v1.0.0
-
-Official CP-Core standard
-
-Marketplace for CP-compatible agents
-
-SDKs (Python, Rust)
-
-Commercial licensing of Regen engine
-
-6. License
-
-ContinuumPort-Core (semantic format & open extractor): MIT License
-
-ContinuumPort-Regen (context reconstruction engine): Proprietary, not included
-
-7. Notes & Strategic Alignment
-
-ContinuumPort is the missing semantic continuity layer for the post-smartphone era.
-
-As Elon Musk stated in November 2025:
-> “We’re not going to have a phone in the traditional sense. What we’ll call a phone will really be an edge node for AI inference with some radios to connect.”
-
-In this exact future, ultra-thin edge devices will have:
-- zero persistent local storage
-- zero traditional OS/apps
-- zero ability to keep long-term context on-device
-
-ContinuumPort solves the only remaining hard problem:  
-how to seamlessly carry your personal semantic thread (tasks, intent, tone, progress, memory) between any edge node, any model (Grok, Claude, Llama, Mistral, Qwen, Gemini, local Ollama, etc.), any environment (cloud, offline, car, robot, glasses, implant).
-
-No other open or closed solution currently exists at this fidelity and portability level.
-
-This public repository contains only the open standard and minimal reference implementations.  
-The high-fidelity reconstruction engine (ContinuumPort-Regen) remains proprietary and is available only under commercial license.
-
-Interested in partnership, integration, or enterprise/on-premise Regen deployment?
+MIT License © 2025
